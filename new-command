@@ -1,0 +1,175 @@
+{
+  "name": "new",
+  "permissions": "NONE",
+  "restriction": "1",
+  "_id": "fKoiz",
+  "actions": [
+    {
+      "info": "1",
+      "find": "Support Team",
+      "storage": "1",
+      "varName": "support.team.role.var",
+      "name": "Find Role"
+    },
+    {
+      "storage": "1",
+      "varName": "support.team.role.var",
+      "comparison": "0",
+      "value": "",
+      "iftrue": "3",
+      "iftrueVal": "5",
+      "iffalse": "0",
+      "iffalseVal": "",
+      "name": "Check Variable"
+    },
+    {
+      "channel": "0",
+      "varName": "",
+      "message": "Creating \"Support Team\" role....",
+      "storage": "1",
+      "varName2": "creating.support.team.role.message",
+      "iffalse": "0",
+      "iffalseVal": "",
+      "name": "Send Message"
+    },
+    {
+      "time": "2",
+      "measurement": "1",
+      "name": "Wait"
+    },
+    {
+      "roleName": "Support Team",
+      "hoist": "false",
+      "mentionable": "true",
+      "color": "GREEN",
+      "position": "",
+      "storage": "1",
+      "varName": "support.team.role",
+      "name": "Create Role"
+    },
+    {
+      "storage": "1",
+      "varName": "creating.support.team.role.message",
+      "name": "Delete Message"
+    },
+    {
+      "channel": "0",
+      "varName": "",
+      "message": "**Support Team** Role has been successfully created.\nPlease add the role to people you'd like to add it to!",
+      "storage": "0",
+      "varName2": "",
+      "iffalse": "0",
+      "iffalseVal": "",
+      "name": "Send Message"
+    },
+    {
+      "storage": "2",
+      "varName": "support.ticket.number",
+      "changeType": "1",
+      "value": "1",
+      "name": "Control Variable"
+    },
+    {
+      "info": "1",
+      "find": "Support Team",
+      "storage": "1",
+      "varName": "found.role.support.team",
+      "name": "Find Role"
+    },
+    {
+      "channelName": "support-${serverVars(\"support.ticket.number\")}",
+      "categoryID": "",
+      "topic": "Support Ticket #${tempVars(\"support.ticket.number\")}",
+      "position": "",
+      "storage": "1",
+      "varName": "support.ticket.channel",
+      "name": "Create Text Channel"
+    },
+    {
+      "storage": "3",
+      "varName": "support.ticket.channel",
+      "permission": "READ_MESSAGES",
+      "state": "1",
+      "name": "Set Channel Permissions"
+    },
+    {
+      "channel": "3",
+      "varName": "support.ticket.channel",
+      "member": "1",
+      "varName2": "",
+      "permission": "READ_MESSAGES",
+      "state": "0",
+      "name": "Set Member Channel Perms"
+    },
+    {
+      "channel": "3",
+      "varName": "support.ticket.channel",
+      "role": "3",
+      "varName2": "found.role.support.team",
+      "permission": "READ_MESSAGES",
+      "state": "0",
+      "name": "Set Role Channel Perms"
+    },
+    {
+      "info": "1",
+      "find": "logs",
+      "storage": "1",
+      "varName": "found.channel.logs",
+      "name": "Find Channel"
+    },
+    {
+      "member": "1",
+      "varName": "",
+      "info": "22",
+      "storage": "1",
+      "varName2": "command.author",
+      "name": "Store Member Info"
+    },
+    {
+      "channel": "3",
+      "varName": "support.ticket.channel",
+      "info": "0",
+      "storage": "1",
+      "varName2": "support.ticket.channel.mention.object",
+      "name": "Store Channel Info"
+    },
+    {
+      "channel": "0",
+      "varName": "",
+      "message": "${tempVars(\"command.author\")}, your support ticket has been created!\n${tempVars(\"support.ticket.channel.mention.object\")}",
+      "storage": "0",
+      "varName2": "",
+      "iffalse": "0",
+      "iffalseVal": "",
+      "name": "Send Message"
+    },
+    {
+      "title": "Support Ticket Created Log",
+      "author": "",
+      "color": "RED",
+      "timestamp": "true",
+      "url": "",
+      "authorIcon": "",
+      "imageUrl": "",
+      "thumbUrl": "",
+      "storage": "1",
+      "varName": "support.ticket.created.log.embed.message",
+      "name": "Create Embed Message"
+    },
+    {
+      "storage": "1",
+      "varName": "support.ticket.created.log.embed.message",
+      "message": "${tempVars(\"command.author\")} has ✅ a new support ticket!\n${tempVars(\"support.ticket.channel.mention.object\")}",
+      "name": "Set Embed Description"
+    },
+    {
+      "storage": "1",
+      "varName": "support.ticket.created.log.embed.message",
+      "channel": "5",
+      "varName2": "found.channel.logs",
+      "storage3": "0",
+      "varName3": "",
+      "name": "Send Embed Message"
+    }
+  ]
+}
